@@ -1,0 +1,62 @@
+<dom-module id="tomsshow-cards">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .cards {
+        position: relative;
+      }
+
+      .cards .scroll {
+        display: grid;
+        grid-auto-flow: column;
+        grid-column-gap: 1em;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        -webkit-overflow-scrolling: touch;
+        padding-top: calc(1em + 4vh);
+        padding-bottom: calc(2em + 6vh);
+        padding-left: calc(1em + 3vw);
+      }
+
+      .cards .scroll:after {
+        content: '';
+        display: block;
+        width: calc(10em + 3vw);
+        height: 100%;
+      }
+
+      :host ::shadow tomsshow-card {
+        margin-left: calc(1em + 1vw);
+      }
+
+      .cards .overflow {
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10em;
+        background: linear-gradient(to right, transparent, #f5f5f5);
+        background-attachment: scroll;
+      }
+    </style>
+
+    <div class="cards">
+      <div class="scroll">
+        <slot></slot>
+      </div>
+      <div class="overflow"></div>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'tomsshow-cards'
+    });
+  </script>
+</dom-module>

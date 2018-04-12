@@ -1,0 +1,62 @@
+<dom-module id="tomsshow-link">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      #icon iron-image {
+        width: 5em;
+        height: 3em;
+      }
+
+      #title {
+        font-size: 2em;
+        text-decoration: unset;
+        color: #333333;
+      }
+
+      #title[href] {
+        color: #005286;
+      }
+    </style>
+
+    <div id="icon">
+      <iron-image src="[[image]]" sizing="contain"></iron-image>
+    </div>
+
+    <div id="content">
+      <template is="dom-if" if="[[link]]">
+        <a id="title" href="[[link]]" target="_blank">[[title]]</a>
+      </template>
+      <template is="dom-if" if="[[!link]]">
+        <div id="title">[[title]]</div>
+      </template>
+      <div class="slot">
+        <slot></slot>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'tomsshow-link',
+
+      properties: {
+        image: {
+          type: String,
+          value: '/src/assets/reddit.png',
+        },
+        title: {
+          type: String,
+          value: 'Reddit',
+        },
+        link: {
+          type: String,
+          value: "https://reddit.com"
+        },
+      }
+    });
+  </script>
+</dom-module>

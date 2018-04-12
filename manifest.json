@@ -1,0 +1,6 @@
+{
+  "name": "tomsshow",
+  "short_name": "tomsshow",
+  "start_url": "/",
+  "display": "standalone"
+}

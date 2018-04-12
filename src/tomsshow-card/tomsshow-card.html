@@ -1,0 +1,82 @@
+<dom-module id="tomsshow-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: white;
+        max-width: 400px;
+        overflow: hidden;
+        box-shadow: -1em 1em 4em hsla(207,98%,5%,0.18);
+        min-width: 300px;
+        transition: all .3s ease-in-out;
+      }
+
+      :host:hover,
+      :host:focus {
+        transform: scale(1.1);
+      }
+
+      header {
+        padding-top: 1em;
+      }
+
+      iron-image {
+        height: 10vw;
+        height: 12vmin;
+        width: auto;
+        display: block;
+      }
+
+      #content {
+        padding: 2em;
+      }
+
+      #title {
+        font-size: 2em;
+        text-decoration: unset;
+        color: #333333;
+      }
+
+      #title[href] {
+        color: #005286;
+      }
+    </style>
+
+    <header>
+      <iron-image src="[[image]]" sizing="contain"></iron-image>
+    </header>
+
+    <div id="content">
+      <template is="dom-if" if="[[link]]">
+        <a id="title" href="[[link]]" target="_blank">[[title]]</a>
+      </template>
+      <template is="dom-if" if="[[!link]]">
+        <div id="title">[[title]]</div>
+      </template>
+      <div class="slot">
+          <slot></slot>
+      </div>
+    </div>
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'tomsshow-card',
+
+      properties: {
+        image: {
+          type: String,
+          value: '/src/assets/docker.png',
+        },
+        title: {
+          type: String,
+          value: 'Docker',
+        },
+        link: {
+          type: String,
+          value: null
+        },
+      }
+    });
+  </script>
+</dom-module>

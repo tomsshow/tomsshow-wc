@@ -1,0 +1,150 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../iron-behaviors/iron-button-state.html">
+
+<!--
+`moo-card`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="moo-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --moo-card-padding: 1.2em;
+      }
+
+      #container {
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        padding: var(--moo-card-padding);
+        display: flex;
+      }
+
+      :host[url] #container {
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+      }
+
+      :host[url] #container:hover,
+      :host[url] #container:focus {
+        box-shadow: 0px 0px 1px rgba(192, 111, 54, 1);
+      }
+
+      #title {
+        margin-top: 0;
+      }
+
+      #info {
+        flex: 1 1 auto;
+      }
+
+      #info ::slotted(*:last-child) {
+        margin-bottom: 0;
+      }
+
+      #image {
+        position: relative;
+        width: 10vw;
+        flex: 1 1 10vw;
+        min-width: 100px;
+        max-width: 250px;
+        margin: -var(--moo-card-padding);
+      }
+
+      #image iron-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      #url {
+        opacity: .6;
+        width: 500px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+    </style>
+    <div id="container" role$="[[__containerRole()]]" href$="[[url]]" on-tap="__clickHandler" tabindex$="[[__containerTabIndex()]]">
+      <div id="info">
+        <h2 id="title">[[title]]</h2>
+        <slot></slot>
+        <template is="dom-if" if="[[url]]">
+          <div id="url">[[url]]</div>
+        </template>
+      </div>
+      <template is="dom-if" if="[[image]]">
+        <div id="image">
+          <iron-image src="[[image]]" preload sizing="cover"></iron-image>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'moo-card',
+
+      behaviors: [Polymer.IronButtonState],
+
+      properties: {
+        title: {
+          type: String,
+          value: '',
+        },
+        image: {
+          type: String,
+          value: '',
+        },
+        bgImage: {
+          type: String,
+          value: '',
+        },
+        url: {
+          type: String,
+          value: '',
+          reflectToAttribute: true,
+        }
+      },
+
+      /**
+       * Find out what the role for this element should be.
+       */
+      __containerRole: function () {
+        if (this.url) {
+          return 'link';
+        }
+        return false;
+      },
+
+      /**
+       * If we have a url and we have a click then go to that page
+       */
+      __clickHandler: function (e) {
+        if (this.url) {
+          window.open(this.url, '_blank');
+        }
+      },
+
+      /**
+       * Find out if we should place a tabindex on the container
+       */
+       __containerTabIndex: function () {
+         return '-1';
+        if (this.url) {
+          return '-1';
+        }
+        else {
+          return false;
+        }
+      }
+    });
+  </script>
+</dom-module>
