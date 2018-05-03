@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<<<<<<< HEAD
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -7,20 +8,40 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+=======
+<link rel="import" href="../bower_components/app-route/app-locaiton.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+>>>>>>> 84b9151d44d1832085527a1011545a5e2dcc50cc
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selection.html">
 <link rel="import" href="../../bower_components/paper-horizontal-scroll/paper-horizontal-scroll.html">
+<<<<<<< HEAD
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+=======
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+
+>>>>>>> 84b9151d44d1832085527a1011545a5e2dcc50cc
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Gugi|Open+Sans" rel="stylesheet">
 <link rel="import" href="../odl-quote/odl-quote.html">
 <link rel="import" href="../tomsshow-card/tomsshow-card.html">
 <link rel="import" href="../tomsshow-card/tomsshow-cards.html">
 <link rel="import" href="../tomsshow-link/tomsshow-link.html">
 <link rel="import" href="../tomsshow-link/tomsshow-links.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+
+
 
 
 
@@ -38,11 +59,19 @@
 
       app-header {
         background-color: var(--app-primary-color);
+<<<<<<< HEAD
         color: rgb(63, 60, 60);
       }
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: gray;;
+=======
+        color: #fff;
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+>>>>>>> 84b9151d44d1832085527a1011545a5e2dcc50cc
       }
 
       h1,
@@ -217,8 +246,12 @@
 
       <app-header condenses reveals effect="waterfall">
         <app-toolbar>
+<<<<<<< HEAD
           <!-- menu button -->
           <paper-icon-button icon="menu" id="drawMenu">hello</paper-icon-button>
+=======
+          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+>>>>>>> 84b9151d44d1832085527a1011545a5e2dcc50cc
           <div main-title>Welcome to Tom's Website</div> 
         </app-toolbar>
       </app-header>
@@ -355,6 +388,7 @@
         },
       },
       
+<<<<<<< HEAD
       listeners: {
         "drawMenu.tap": "_menuButtonTap",
       },
@@ -366,6 +400,11 @@
         this.$.drawer.toggle();
         console.log("called :)");
       },
+=======
+      _routePageChanged: function(page) {
+        this.page = page || 'Home';
+      },
+>>>>>>> 84b9151d44d1832085527a1011545a5e2dcc50cc
       
       _PageChanged: function(page) {
         //load page inputs on demand
