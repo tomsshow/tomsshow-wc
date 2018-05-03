@@ -1,13 +1,31 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-locaiton.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selection.html">
+<link rel="import" href="../../bower_components/paper-horizontal-scroll/paper-horizontal-scroll.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Gugi|Open+Sans" rel="stylesheet">
 <link rel="import" href="../odl-quote/odl-quote.html">
 <link rel="import" href="../tomsshow-card/tomsshow-card.html">
 <link rel="import" href="../tomsshow-card/tomsshow-cards.html">
 <link rel="import" href="../tomsshow-link/tomsshow-link.html">
 <link rel="import" href="../tomsshow-link/tomsshow-links.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+
+
 
 <dom-module id="tomsshow-app">
   <template>
@@ -15,6 +33,17 @@
       :host {
         display: columns;
         font-family: 'Open Sans', sans-serif;
+        --app-primary-color:#4285f4;
+        --app-secondary-color: black;
+      }
+
+      app-header {
+        background-color: var(--app-primary-color);
+        color: #fff;
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
       }
 
       h1,
@@ -44,6 +73,24 @@
 
       section {
         margin: 6em 0;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+      }
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        line-height: 40px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+      }
+      .drawer-list a.iron-selcted {
+        color: black;
+        font-weight: bold;
+      }
+      .drawer-list a.subroute {
+        padding-left: 32px;
       }
 
       @media screen and (min-width: 500px) {}
@@ -100,7 +147,7 @@
         animation: iconjump 4s forwards;
         animation-iteration-count: infinite;
         animation-direction: normal;
-        animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+        animation-timing-function: cubic-bezier(0, 0, 0.58, 0.99);
         align-self: center;
         justify-self: center;
         --iron-icon-height: 2.4em;
@@ -129,6 +176,7 @@
         text-align: center;
       }
 
+
       @keyframes iconjump {
         0% {
           transform: translateY(0);
@@ -144,87 +192,140 @@
         }
       }
     </style>
-    <header aria-labelledby="siteTitle">
-      <div id="about">
-        <h1 id="siteTitle">TomVar</h1>
-        <div class="info">
-          <p>Hello World, I'm [[__leftBracket]] Tom [[__rightBracket]].
-            I <iron-icon class="love-icon" icon="icons:favorite-border" alt="love"></iron-icon> technology.</p>
-          <iron-icon id="learnMoreIcon" icon="icons:expand-more"></iron-icon>
-        </div>
-      </div>
-      <div id="tom-image">
-        <iron-image role="button" id="tom-image" src="../assets/tom.png" sizing="cover"></iron-image>
-      </div>
-    </header>
+    <app-location route="{{route}}"></app-location>
+    <app-route 
+        route="{{route}}"
+        pattern="{{/:page}}"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
 
-    <main id="main" role="main">
-      <section>
-        <h2>Web Technologies I'm into</h2>
-        <paper-horizontal-scroll>
+  <app-drawer-layout fullbleed>
+    
+    <!-- Drawer Content -->
+    <app-drawer id="drawer">
+      <app-toolbar>Menu</app-toolbar>
+      <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
+        <a name="Home" href="tomsshow-app.html">Home</a>
+        <a name="Demo" href="tomsshow-app.html">Demo</a>
+        <a name="Projects" href="tomsshow-app.html">Projects</a>
+        <a name="About Me" href="tomsshow-app.html">About Me</a>
+        <a name="Contact" href="tomsshow-app.html">Contact</a>
+      </iron-selector>
+    </app-drawer>
+
+    <!-- Main Content -->
+    <app-header-layout has-scrolling-region>
+
+      <app-header condenses reveals effect="waterfall">
+        <app-toolbar>
+          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+          <div main-title>Welcome to Tom's Website</div> 
+        </app-toolbar>
+      </app-header>
+
+    <div id="mainContent">
+      <header aria-labelledby="siteTitle">
+        <div id="about">
+          <h1 id="siteTitle">TomVar</h1>
+          <div class="info">
+            <p>Hello World, I'm [[__leftBracket]] Tom [[__rightBracket]].
+              I <iron-icon class="love-icon" icon="icons:favorite-border" alt="love"></iron-icon> technology.</p>
+            <iron-icon id="learnMoreIcon" icon="icons:expand-more"></iron-icon>
+          </div>
+        </div>
+        <div id="tom-image">
+          <iron-image role="button" id="tom-image" src="../assets/tom.png" sizing="cover"></iron-image>
+        </div>
+      </header>
+  
+      <main id="main" role="main">
+        <section>
+          <div class="topnav" id="myTopnav">
+            <!-- <a href="#home" class="active">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a> -->
+          </div>
+        </section>
+        <section>
+          <h2>Web Technologies I'm into</h2>
+          <paper-horizontal-scroll>
+            <tomsshow-cards>
+              <tomsshow-card title="Polymer" image="src/assets/polymer.png" link="https://www.polymer-project.org/">
+                <!-- A JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps. -->
+              </tomsshow-card>
+              <tomsshow-card title="Electron" image="src/assets/electron.png" link="https://electronjs.org/"></tomsshow-card>
+              <tomsshow-card title="AWS" image="src/assets/aws.png" link="https://aws.amazon.com/"></tomsshow-card>
+              <tomsshow-card title="Docker" image="src/assets/docker.png" link="https://www.docker.com/"></tomsshow-card>
+              <tomsshow-card title="xAPI" image="src/assets/xapi.png" link="https://xapi.com/overview/"></tomsshow-card>
+              <tomsshow-card title="Nodejs" image="src/assets/nodejs.png" link="https://nodejs.org/en/"></tomsshow-card>
+              <tomsshow-card title="Gitbook" image="src/assets/gitbook.jpg" link="https://www.gitbook.com/"></tomsshow-card>
+            </tomsshow-cards>
+           </paper-horizontal-scroll>
+        </section>
+  
+        <section>
+          <h2>Language Experience</h2>
           <tomsshow-cards>
-            <tomsshow-card title="Polymer" image="src/assets/polymer.png" link="https://www.polymer-project.org/">
-              <!-- A JavaScript library that helps you create custom reusable HTML elements, and use them to build performant, maintainable apps. -->
-            </tomsshow-card>
-            <tomsshow-card title="Electron" image="src/assets/electron.png" link="https://electronjs.org/"></tomsshow-card>
-            <tomsshow-card title="AWS" image="src/assets/aws.png" link="https://aws.amazon.com/"></tomsshow-card>
-            <tomsshow-card title="Docker" image="src/assets/docker.png" link="https://www.docker.com/"></tomsshow-card>
-            <tomsshow-card title="xAPI" image="src/assets/xapi.png" link="https://xapi.com/overview/"></tomsshow-card>
-            <tomsshow-card title="Nodejs" image="src/assets/nodejs.png" link="https://nodejs.org/en/"></tomsshow-card>
-            <tomsshow-card title="Gitbook" image="src/assets/gitbook.jpg" link="https://www.gitbook.com/"></tomsshow-card>
+            <tomsshow-card title="HTML" image="src/assets/html.png"></tomsshow-card>
+            <tomsshow-card title="CSS" image="src/assets/css.png"></tomsshow-card>
+            <tomsshow-card title="Javascript" image="src/assets/javascript.png"></tomsshow-card>
+            <tomsshow-card title="Korean" image="src/assets/korean.png"></tomsshow-card>
+            <tomsshow-card title="Java" image="src/assets/java.png"></tomsshow-card>
+            <tomsshow-card title="Python" image="src/assets/python.png"></tomsshow-card>
           </tomsshow-cards>
-        </paper-horizontal-scroll>
-      </section>
-
-      <section>
-        <h2>Language Experience</h2>
-        <tomsshow-cards>
-          <tomsshow-card title="HTML" image="src/assets/html.png"></tomsshow-card>
-          <tomsshow-card title="CSS" image="src/assets/css.png"></tomsshow-card>
-          <tomsshow-card title="Javascript" image="src/assets/javascript.png"></tomsshow-card>
-          <tomsshow-card title="Korean" image="src/assets/korean.png"></tomsshow-card>
-          <tomsshow-card title="Java" image="src/assets/java.png"></tomsshow-card>
-          <tomsshow-card title="Python" image="src/assets/python.png"></tomsshow-card>
-        </tomsshow-cards>
-      </section>
-
-      <section>
-        <h2>Projects I'm involved with</h2>
-        <tomsshow-cards>
-          <tomsshow-card title="HAX Desktop App" image="src/assets/electron.png" link="http://haxtheweb.org"></tomsshow-card>
-          <tomsshow-card title="LRN Web Components" image="src/assets/lrn.png" link="https://github.com/LRNWebComponents"></tomsshow-card>
-          <tomsshow-card title="ELMS Learning Network" image="src/assets/elmsln.png" link="https://www.elmsln.org/"></tomsshow-card>
-          <tomsshow-card title="Docker AWS LAMP Stack"></tomsshow-card>
-        </tomsshow-cards>
-      </section>
-
-      <section>
-        <h2>Places I'm on</h2>
-        <tomsshow-links>
-          <tomsshow-link title="Github" image="src/assets/github.svg" link="https://github.com/tomsshow"></tomsshow-link>
-          <tomsshow-link title="Reddit" image="src/assets/reddit.png" link="https://www.reddit.com/r/iotom/"></tomsshow-link>
-          <tomsshow-link title="LinkedIn" image="src/assets/linkedin.png" link="https://www.linkedin.com/in/shiju-tom-varughese/"></tomsshow-link>
-        </tomsshow-links>
-      </section>
-
-      <section>
-        <h2>Nice things people have said about me</h2>
-        <div id="quotes">
-          <odl-quote image="src/assets/heymp.jpg" cite="Michael Potter, Educational Technologist, Penn State University">
-            Tom has been an invaluable asset to our group, the Office of Digital Learning. We met Tom at a Polymer training event and
-            immediately offered him an internship with our group. He's extremely smart,motivated, vast technical knowledge,
-            takes direction with excitment, has tremendous communication skills, and is always willing to help out wherever
-            he can. He has played a pivitol role in getting our HAX project off the ground and we can't thank him enough.
-          </odl-quote>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      &copy; TomsShow [[year]]
-    </footer>
-  </template>
-
+        </section>
+  
+        <section>
+          <h2>Projects I'm involved with</h2>
+          <tomsshow-cards>
+            <tomsshow-card title="HAX Desktop App" image="src/assets/electron.png" link="http://haxtheweb.org"></tomsshow-card>
+            <tomsshow-card title="LRN Web Components" image="src/assets/lrn.png" link="https://github.com/LRNWebComponents"></tomsshow-card>
+            <tomsshow-card title="ELMS Learning Network" image="src/assets/elmsln.png" link="https://www.elmsln.org/"></tomsshow-card>
+            <tomsshow-card title="Docker AWS LAMP Stack"></tomsshow-card>
+          </tomsshow-cards>
+        </section>
+  
+        <section>
+          <h2>Places I'm on</h2>
+          <tomsshow-links>
+            <tomsshow-link title="Github" image="src/assets/github.svg" link="https://github.com/tomsshow"></tomsshow-link>
+            <tomsshow-link title="Reddit" image="src/assets/reddit.png" link="https://www.reddit.com/r/iotom/"></tomsshow-link>
+            <tomsshow-link title="LinkedIn" image="src/assets/linkedin.png" link="https://www.linkedin.com/in/shiju-tom-varughese/"></tomsshow-link>
+            <tomsshow-link title="About me" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
+          </tomsshow-links>
+        </section>
+  
+        <section>
+            <h2>Learn more about me!</h2>
+            <tomsshow-links>
+              <tomsshow-link title="About me" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
+              <tomsshow-link title="Demo Page" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
+              <tomsshow-link title="Blog Posts" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
+            </tomsshow-links>
+          </section>
+  
+        <section>
+          <h2>Nice things people have said about me</h2>
+          <div id="quotes">
+            <odl-quote image="src/assets/heymp.jpg" cite="Michael Potter, Educational Technologist, Penn State University">
+              Tom has been an invaluable asset to our group, the Office of Digital Learning. We met Tom at a Polymer training event and
+              immediately offered him an internship with our group. He's extremely smart,motivated, vast technical knowledge,
+              takes direction with excitment, has tremendous communication skills, and is always willing to help out wherever
+              he can. He has played a pivitol role in getting our HAX project off the ground and we can't thank him enough.
+            </odl-quote>
+          </div>
+        </section>
+      </main>
+  
+      <footer>
+        &copy; TomsShow [[year]]
+      </footer>
+      </template>
+      </div>
+      </app-header-layout>
+    </app-drawer-layout>
 
   <script>
     Polymer({
@@ -247,6 +348,25 @@
           type: String,
           value: "}}"
         },
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChange'  
+        },
+      },
+      
+      _routePageChanged: function(page) {
+        this.page = page || 'Home';
+      },
+      
+      _PageChanged: function(page) {
+        //load page inputs on demand
+        this.importHref(
+          this.resolveUrL('my-' + page +".html"), null, null, true);
+      },
+
+      _drawerSelected:function() {
+        this.$.drawer.persistent||this.$.drawer.close()
       },
 
       listeners: {

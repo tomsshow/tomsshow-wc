@@ -6,7 +6,10 @@
     "iron-image": "PolymerElements/iron-image#^2.2.0",
     "iron-icons": "PolymerElements/iron-icons#^2.1.1",
     "iron-icon": "PolymerElements/iron-icon#^2.1.0",
-    "moo-card": "LRNWebComponents/moo-card"
+    "moo-card": "LRNWebComponents/moo-card",
+    "app-layout": "^2.1.1",
+    "app-route": "*",
+    "iron-pages": "^2.1.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
