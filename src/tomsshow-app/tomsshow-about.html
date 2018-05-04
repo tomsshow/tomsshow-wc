@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="tomsshow-about">
+  <template>
+    <main id="main" role="main">
+      <section>
+        <h2>Hello!</h2>        
+      </section>
+    </main>
+
+    <footer>
+      &copy; TomsShow [[year]]
+    </footer>
+  </template>
+
+
+  <script>
+    Polymer({
+
+      is: 'tomsshow-app',
+
+      properties: {
+        year: {
+          type: String,
+          value: () => {
+            const date = new Date();
+            return date.getFullYear();
+          },
+        },
+        __leftBracket: {
+          type: String,
+          value: "{{"
+        },
+        __rightBracket: {
+          type: String,
+          value: "}}"
+        },
+      },
+
+      listeners: {
+        'learnMoreIcon.tap': '__scrollToMain'
+      },
+
+      __scrollToMain: function (e) {
+        const main = this.$.main;
+        main.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+      },
+
+    });
+  </script>
+</dom-module>

@@ -7,6 +7,10 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<<<<<<< HEAD
+=======
+
+>>>>>>> gh-pages
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
@@ -21,6 +25,14 @@
 <link rel="import" href="../tomsshow-card/tomsshow-cards.html">
 <link rel="import" href="../tomsshow-link/tomsshow-link.html">
 <link rel="import" href="../tomsshow-link/tomsshow-links.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+
+
+
+
+
+
 
 
 
@@ -42,7 +54,11 @@
       }
 
       app-header paper-icon-button {
+<<<<<<< HEAD
         --paper-icon-button-ink-color: gray;;
+=======
+        --paper-icon-button-ink-color: white;
+>>>>>>> gh-pages
       }
 
       h1,
@@ -201,13 +217,21 @@
   <app-drawer-layout fullbleed>
     
     <!-- Drawer Content -->
+<<<<<<< HEAD
     <app-drawer id="drawer">
+=======
+    <app-drawer id="drawer" swipe-open slot="drawer">
+>>>>>>> gh-pages
       <app-toolbar>Menu</app-toolbar>
       <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
         <a name="Home" href="tomsshow-app.html">Home</a>
         <a name="Demo" href="tomsshow-app.html">Demo</a>
         <a name="Projects" href="tomsshow-app.html">Projects</a>
+<<<<<<< HEAD
         <a name="About Me" href="tomsshow-app.html">About Me</a>
+=======
+        <a name="About Me" href="#tomsshow-about">About Me</a>
+>>>>>>> gh-pages
         <a name="Contact" href="tomsshow-app.html">Contact</a>
       </iron-selector>
     </app-drawer>
@@ -215,10 +239,17 @@
     <!-- Main Content -->
     <app-header-layout has-scrolling-region>
 
+<<<<<<< HEAD
       <app-header condenses reveals effect="waterfall">
         <app-toolbar>
           <!-- menu button -->
           <paper-icon-button icon="menu" id="drawMenu">hello</paper-icon-button>
+=======
+      <app-header reveals slot="header">
+        <app-toolbar>
+          <!-- menu button -->
+          <paper-icon-button icon="menu" id="drawMenu" on-click="_toggleMenu"></paper-icon-button>
+>>>>>>> gh-pages
           <div main-title>Welcome to Tom's Website</div> 
         </app-toolbar>
       </app-header>
@@ -240,6 +271,7 @@
   
       <main id="main" role="main">
         <section>
+<<<<<<< HEAD
           <div class="topnav" id="myTopnav">
             <!-- <a href="#home" class="active">Home</a>
             <a href="#news">News</a>
@@ -249,6 +281,8 @@
           </div>
         </section>
         <section>
+=======
+>>>>>>> gh-pages
           <h2>Web Technologies I'm into</h2>
           <paper-horizontal-scroll>
             <tomsshow-cards>
@@ -358,13 +392,30 @@
       listeners: {
         "drawMenu.tap": "_menuButtonTap",
       },
+<<<<<<< HEAD
+=======
+
+      _toggleMenu: function(e) {
+        this.$.drawer.toggle();
+
+        this.close = !this.$.drawer.opened;
+        this.async(function(){
+          window.dispatchEvent(new Event('resize'));
+          Polymer.updateStyles();
+        });
+      },
+>>>>>>> gh-pages
       _routePageChanged: function(page) {
         this.page = page || 'Home';
       },
 
       _menuButtonTap: function() {
         this.$.drawer.toggle();
+<<<<<<< HEAD
         console.log("menuButtonTap called");
+=======
+        console.log("called :)");
+>>>>>>> gh-pages
       },
       
       _PageChanged: function(page) {
