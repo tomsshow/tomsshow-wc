@@ -212,7 +212,7 @@
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
           <a name="Home" href="/">Home</a>
-          <a name="Demo" href="/demo">Demo</a>
+          <a name="Demo" href="/demo">A-Frame VR Web</a>
           <a name="Projects" href="/projects">Projects</a>
           <a name="About Me" href="/about">About Me</a>
           <a name="Contact" href="/contact">Contact</a>
@@ -336,28 +336,43 @@
               </a-scene></div>
             </section>
             <section page="projects" id="projectPage">
-              <h1>Projects!</h1>
               <section>
-                  <tomsshow-card title="HAX Desktop App" image="src/assets/electron.png" link="http://haxtheweb.org"></tomsshow-card>
+                <p>
+
+                </p>
               </section>
-              <p>    I have been trying to keep my skills up to date, so I try to start a project that challenges my skills.
-                Sometimes I am put into a project where I have very little experience in, but those tend to be the funnest experiences!
-                my favorite project byfar is hax!
-              </p>
+              <tomsshow-cards>
+              <h2>Projects!</h2>
+              <section>  
+                <tomsshow-card title="HAX Desktop App" image="src/assets/electron.png" link="http://haxtheweb.org"></tomsshow-card>
+                <p>    I have been trying to keep my skills up to date, so I try to start a project that challenges my skills.
+                  Sometimes I am put into a project where I have very little experience in, but those tend to be the funnest experiences!
+                  my favorite project byfar is hax!
+                </p>
+                </tomsshow-cards>
+              </section>
             </section>
             <section page="about">
-              <h1>About me!</h1>
-              <p>    Hello!! My name is Tom Var! I just graduated from Penn State with a degree in Information Technology with a concentration in 
-                Integration and Application of Technology. It is crazy to think that 4 years went by so fast! Can't wait to sepnd the next 30 
-                years paying off this crippling student loan debt lol. Well I got a lot of time ahead of me since im only in my early 20s. I am 
-                a very big dog person, with 2 Alasken Malamutes back home. At my time at Penn State I have interned for Dr. David Fusco in the
-                College of  Information Science and Technology and the Office of Digital Learning in the Eberly College of Science. One of my 
-                biggest career dreams is to work at Penn State and continue making amazing web applications with my amazing co-workers at the Eberly ODL.
-
-              </p>
+                <section>
+                  <tomsshow-cards>
+                  <h2>About me!!</h2>
+                  <div id="quotes">
+                    <odl-quote image="src/assets/tom.png" cite="@Tom_Var">
+                  Hello!! My name is Tom Var! I just graduated from Penn State with a degree in Information Technology with a concentration in 
+                  Integration and Application of Technology. It is crazy to think that 4 years went by so fast! Can't wait to sepnd the next 30 
+                  years paying off this crippling student loan debt lol. Well I got a lot of time ahead of me since im only in my early 20s. I am 
+                  a very big dog person, with 2 Alasken Malamutes back home. At my time at Penn State I have interned for Dr. David Fusco in the
+                  College of  Information Science and Technology and the Office of Digital Learning in the Eberly College of Science. One of my 
+                  biggest career dreams is to work at Penn State and continue making amazing web applications with my amazing co-workers at the Eberly ODL.
+                    </odl-quote>
+                  </div>
+                </tomsshow-cards>
+                </section>
             </section>
             <section page="contact">
-              <h1>Contact me here:</h1>
+              <tomsshow-cards>
+              <h2>Contact me here:</h2>
+            </tomsshow-cards>
               <section></section>
               <tomsshow-cards>
                 <tomsshow-card title="Twitter" image="src/assets/twitter.png" link="https://twitter.com/Tom_Var"></tomsshow-card>
