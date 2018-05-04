@@ -293,18 +293,18 @@
                     <tomsshow-link title="Github" image="src/assets/github.svg" link="https://github.com/tomsshow"></tomsshow-link>
                     <tomsshow-link title="Reddit" image="src/assets/reddit.png" link="https://www.reddit.com/r/iotom/"></tomsshow-link>
                     <tomsshow-link title="LinkedIn" image="src/assets/linkedin.png" link="https://www.linkedin.com/in/shiju-tom-varughese/"></tomsshow-link>
-                    <tomsshow-link title="About me" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
+                    <!-- <tomsshow-link title="About me" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link> -->
                   </tomsshow-links>
                 </section>
 
-                <section>
+                <!-- <section>
                   <h2>Learn more about me!</h2>
                   <tomsshow-links>
                     <tomsshow-link title="About me" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
                     <tomsshow-link title="Demo Page" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
                     <tomsshow-link title="Blog Posts" image="src/assets/person_pin.png" link="src/tomsshow-app/tomsshow-about.html"></tomsshow-link>
                   </tomsshow-links>
-                </section>
+                </section> -->
 
                 <section>
                   <h2>Nice things people have said about me</h2>
@@ -321,14 +321,33 @@
               </main>
             </section>
             <section page="demo">
-              Demo Page
+              <h1>Demos!</h1>
+              <div id="demoHeader" padding= 10px>
+                  <p>This is a little WebVR demo using A-Frame!</p>
+              </div>
+              <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+             <div id="aframe demo" padding= 10px> 
+                <a-scene>
+                <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+                <a-sphere position="0 1.25 -5" radius="0.75" color="#EF2D5E"></a-sphere>
+                <a-cylinder position="1 0.75 -3" radius="0.5" height="4" color="#FFC65D"></a-cylinder>
+                <a-plane position="0 0 -4" rotation="-90 0 0" width="6" height="3" color="#7BC8A4"></a-plane>
+                <a-sky color="#ECECEC"></a-sky>
+              </a-scene></div>
             </section>
-            <section page="projects">
-              Projects
+            <section page="projects" id="projectPage">
+              <h1>Projects!</h1>
+              <section>
+                  <tomsshow-card title="HAX Desktop App" image="src/assets/electron.png" link="http://haxtheweb.org"></tomsshow-card>
+              </section>
+              <p>    I have been trying to keep my skills up to date, so I try to start a project that challenges my skills.
+                Sometimes I am put into a project where I have very little experience in, but those tend to be the funnest experiences!
+                my favorite project byfar is hax!
+              </p>
             </section>
             <section page="about">
               <h1>About me!</h1>
-              <p>Hello!! My name is Tom Var! I just graduated from Penn State with a degree in Information Technology with a concentration in 
+              <p>    Hello!! My name is Tom Var! I just graduated from Penn State with a degree in Information Technology with a concentration in 
                 Integration and Application of Technology. It is crazy to think that 4 years went by so fast! Can't wait to sepnd the next 30 
                 years paying off this crippling student loan debt lol. Well I got a lot of time ahead of me since im only in my early 20s. I am 
                 a very big dog person, with 2 Alasken Malamutes back home. At my time at Penn State I have interned for Dr. David Fusco in the
@@ -338,7 +357,13 @@
               </p>
             </section>
             <section page="contact">
-              Contact
+              <h1>Contact me here:</h1>
+              <section></section>
+              <tomsshow-cards>
+                <tomsshow-card title="Twitter" image="src/assets/twitter.png" link="https://twitter.com/Tom_Var"></tomsshow-card>
+                <tomsshow-card title="LinkedIn" image="src/assets/linkedin.png" link="https://www.linkedin.com/in/shiju-tom-varughese/"></tomsshow-card>
+                <tomsshow-card title="Reddit" image="src/assets/reddit.png" link="https://www.reddit.com/r/iotom"></tomsshow-card>
+              </tomsshow-cards>
             </section>
           </iron-pages>
         </div>
