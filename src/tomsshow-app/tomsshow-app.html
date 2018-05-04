@@ -47,7 +47,7 @@
       }
 
       app-header paper-icon-button {
-        --paper-icon-button-ink-color: gray;;
+        --paper-icon-button-ink-color: white;
       }
 
       h1,
@@ -206,7 +206,7 @@
   <app-drawer-layout fullbleed>
     
     <!-- Drawer Content -->
-    <app-drawer id="drawer">
+    <app-drawer id="drawer" swipe-open slot="drawer">
       <app-toolbar>Menu</app-toolbar>
       <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
         <a name="Home" href="tomsshow-app.html">Home</a>
@@ -220,10 +220,10 @@
     <!-- Main Content -->
     <app-header-layout has-scrolling-region>
 
-      <app-header condenses reveals effect="waterfall">
+      <app-header reveals slot="header">
         <app-toolbar>
           <!-- menu button -->
-          <paper-icon-button icon="menu" id="drawMenu">hello</paper-icon-button>
+          <paper-icon-button icon="menu" id="drawMenu" on-click="_toggleMenu"></paper-icon-button>
           <div main-title>Welcome to Tom's Website</div> 
         </app-toolbar>
       </app-header>
@@ -362,6 +362,16 @@
       
       listeners: {
         "drawMenu.tap": "_menuButtonTap",
+      },
+
+      _toggleMenu: function(e) {
+        this.$.drawer.toggle();
+
+        this.close = !this.$.drawer.opened;
+        this.async(function(){
+          window.dispatchEvent(new Event('resize'));
+          Polymer.updateStyles();
+        });
       },
       _routePageChanged: function(page) {
         this.page = page || 'Home';
