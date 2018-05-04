@@ -208,7 +208,7 @@
     <app-drawer-layout fullbleed>
 
       <!-- Drawer Content -->
-      <app-drawer id="drawer" swipe-open slot="drawer">
+      <app-drawer id="drawer" swipe-open slot="drawer" opened="{{drawerOpened}}">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
           <a name="Home" href="/">Home</a>
@@ -225,7 +225,7 @@
         <app-header reveals slot="header">
           <app-toolbar>
             <!-- menu button -->
-            <paper-icon-button icon="menu" id="drawMenu" on-click="_toggleMenu"></paper-icon-button>
+            <paper-icon-button icon="menu" id="drawMenu" on-click="_toggleMenu" hidden$="[[drawerOpened]]"></paper-icon-button>
             <div main-title>Welcome to Tom's Website</div>
           </app-toolbar>
         </app-header>
@@ -327,7 +327,7 @@
               Projects
             </section>
             <section page="about">
-              About
+              <p>Hello!!</p>
             </section>
             <section page="contact">
               Contact
@@ -400,6 +400,7 @@
 
       _drawerSelected: function () {
         this.$.drawer.persistent || this.$.drawer.close()
+        console.log("drawerSelected");
       },
 
       listeners: {
