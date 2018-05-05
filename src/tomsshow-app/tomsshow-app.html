@@ -211,7 +211,7 @@
       <app-drawer id="drawer" swipe-open slot="drawer" opened="{{drawerOpened}}">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected[[page]] attr-for-selected="name" class="drawer-list" role="navigation" on-iron-active="_drawerSelected">
-          <a name="Home" href="/">Home</a>
+          <a name="Home" href="/tomsshow">Home</a>
           <a name="Demo" href="/demo">A-Frame VR Web</a>
           <a name="Projects" href="/projects">Projects</a>
           <a name="About Me" href="/about">About Me</a>
@@ -232,7 +232,7 @@
 
         <div id="mainContent">
           <iron-pages selected="[[routeData.page]]" attr-for-selected="page">
-            <section page="">
+            <section page="home">
               <header aria-labelledby="siteTitle">
                 <div id="about">
                   <h1 id="siteTitle">TomVar</h1>
@@ -320,6 +320,7 @@
                 </section>
               </main>
             </section>
+            <!-- iron pages -->
             <section page="demo">
               <h1>Demos!</h1>
               <div id="demoHeader" padding= 10px>
@@ -338,7 +339,6 @@
             <section page="projects" id="projectPage">
               <section>
                 <p>
-
                 </p>
               </section>
               <tomsshow-cards>
